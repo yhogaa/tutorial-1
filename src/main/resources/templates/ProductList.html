@@ -28,11 +28,9 @@
                 <a th:href="@{/product/edit/{productId}(productId=${product.productId})}" class="btn btn-primary btn-sm mb-3">
                     Edit
                 </a>
-            </td>
-            <td>
                 <form th:action="@{/product/delete/{productId}(productId=${product.productId})}"
                       th:method="post">
-                    <button type="submit" class="btn btn-danger">Delete</button> // Button untuk delete product
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
