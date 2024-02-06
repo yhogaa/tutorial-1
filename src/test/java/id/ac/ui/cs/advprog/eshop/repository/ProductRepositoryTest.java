@@ -41,6 +41,7 @@ class ProductReposistoryTest {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
     }
+  
     @Test
     void testFindAllIfMoreThanOneProduct() {
         Product product1 = new Product();
