@@ -1,5 +1,8 @@
-# Module 1 - Coding Standards
-## Reflection 1
+# Pemrograman Lanjut A
+> Fadrian Yhoga Pratama - 2206819395
+
+## Module 1 - Coding Standards
+### Reflection 1
 Setelah mempelajari modul _coding standards_, saya memahami bahwa untuk membuat code saya lebih mudah dimengerti dan dapat dimaintenance (pelihara) ada beberapa _coding standard_ yang bisa saya terapkan pada code saya. Beberapa contohnya adalah:
 1. Penggunaan nama fungsi dan variabel yang jelas sehingga code saya dapat mudah dibaca dan dimengerti orang lain
 2. Menggunakan fungsi yang efektif dan hanya melakukan satu tugas untuk membuat fungsi lebih mudah dipahami.
@@ -10,6 +13,6 @@ Tetapi saya menemukan beberapa kekurangan yang ada pada code saya yaitu mengenai
 2. Menerapkan _Authentication & Authorization_ untunk mengantisipasi hal-hal berbahaya yang dapat membahayakan program saya.
 
 
-## Reflection 2
+### Reflection 2
 1. Jumlah unit test dalam suatu class tidak bisa ditentukan oleh jumlah yang spesifik. Sebaiknya, setiap fungsi atau metode dalam kelas memiliki setidaknya satu unit test. Namun, jumlah unit test bisa lebih banyak tergantung pada kompleksitas fungsi atau metode tersebut. Untuk memastikan bahwa unit test kita cukup untuk memverifikasi program yang ada, kita bisa menggunakan metrik seperti _code coverage_. _Code coverage_ adalah persentase kode program yang telah diuji oleh unit test. Jika code coverage tinggi, berarti sebagian besar kode telah diuji. Namun, memiliki code coverage 100% tidak berarti kode kita bebas dari bug atau kesalahan. Code coverage 100% hanya berarti bahwa setiap baris kode telah dieksekusi setidaknya sekali selama pengujian. Tetapi, ini tidak menjamin bahwa semua kasus dan kondisi telah diuji. Oleh karena itu, selain code coverage, kita juga perlu mempertimbangkan aspek lain seperti kasus uji yang beragam dan pengecekan manual.
 2. Membuat class Java baru yang mirip dengan _functional test suite_ sebelumnya dengan _setup procedures_ dan _instance variables_ yang sama mungkin menimbulkan beberapa masalah terkait dengan prinsip _clean code_. Masalah yang bisa saja terjadi adalah duplikasi code yang membuat code susah untuk dimaintenance. Jika ada perubahan pada _setup procedures_ atau _instance variables_, Kita mungkin perlu memperbarui semua class _functional test_ yang menggunakan mereka. Ini dapat membuat maintenance code menjadi lebih sulit. Solusi untuk masalah ini adalah menerapkan prinsip **DRY (Don't Repeat Yourself)**. Kita bisa membuat class **base test** yang berisi _setup procedures_ dan _instance variables_ yang umum digunakan. Kemudian, class _functional test_ lainnya dapat mewarisi class base ini. Dengan cara ini, jika ada perubahan pada _setup procedures_ atau _instance variables_, kita hanya perlu memperbarui di satu tempat, yaitu di class base test. Ini akan membuat code kita lebih mudah untuk dimaintenance dan lebih clean. Selain itu, ini juga akan meningkatkan keterbacaan dan struktur dari code kita.
