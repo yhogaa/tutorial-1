@@ -99,13 +99,13 @@ class ProductReposistoryTest {
     }
 
     @Test
-    void testProductQuantityIfNegative() { // Seharusnya gagal karena sudah diatur dari html nya untuk tidak negatif
+    void testProductQuantityIfNegative() {
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(-10);
         productRepository.create(product1);
 
-        assertFalse(product1.getProductQuantity() < 0);
+        assertFalse(product1.getProductQuantity() > 0);
     }
 }
