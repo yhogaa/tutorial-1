@@ -1,6 +1,8 @@
 # Pemrograman Lanjut A
 > Fadrian Yhoga Pratama - 2206819395
 
+> Akses aplikasi melalui: [ADVShop](https://adpro-tutorial-yhogaa.koyeb.app/)
+
 ## Daftar Modul:
 - **[Tutorial 1](#module-1---coding-standards)**<br>
 - **[Tutorial 2](#module-2---cicd--devops)**<br>
