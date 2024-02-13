@@ -3,6 +3,7 @@ plugins {
 	jacoco
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -42,8 +43,8 @@ dependencies {
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 
-tasks.register<Test>("unitTest"){
-	description = "Runs unit tests"
+tasks.register<Test>("unitTest") {
+	description = "Runs unit tests."
 	group = "verification"
 
 	filter {
@@ -51,8 +52,8 @@ tasks.register<Test>("unitTest"){
 	}
 }
 
-tasks.register<Test>("functionalTest"){
-	description = "Runs functional tests"
+tasks.register<Test>("functionalTest") {
+	description = "Runs functional tests."
 	group = "verification"
 
 	filter {
@@ -74,4 +75,9 @@ tasks.test {
 
 tasks.jacocoTestReport {
 	dependsOn(tasks.test)
+
+	reports {
+		xml.required = true
+		html.required = true
+	}
 }

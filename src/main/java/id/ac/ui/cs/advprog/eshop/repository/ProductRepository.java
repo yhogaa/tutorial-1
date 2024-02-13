@@ -19,7 +19,6 @@ public class ProductRepository {
         return product;
     }
 
-
     public Product edit(Product updatedProduct){
         if(updatedProduct.getProductQuantity() < 0){
             updatedProduct.setProductQuantity(0);
@@ -36,11 +35,8 @@ public class ProductRepository {
   
     public Product deleteById(String id) {
           Product product = findById(id);
-          if (product != null) {
-              productData.remove(product);
-              return product; // return product yang dihapus
-          }
-          return null; // return null jika tidak ada produk dengan id tersebut
+          productData.remove(product);
+          return product;
       }
 
      public Product findById(String id){

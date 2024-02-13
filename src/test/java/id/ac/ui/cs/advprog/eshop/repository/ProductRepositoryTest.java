@@ -75,8 +75,8 @@ class ProductReposistoryTest {
 
         Product editedProduct = new Product();
         editedProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        editedProduct.setProductName("Sampo Cap BengBeng");
-        editedProduct.setProductQuantity(0);
+        editedProduct.setProductName("Sampo Cap Bengbeng");
+        editedProduct.setProductQuantity(10);
         productRepository.edit(editedProduct);
 
         product = productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -143,7 +143,5 @@ class ProductReposistoryTest {
 
         assertNull(uneditedProduct);
     }
-
-
 
 }
