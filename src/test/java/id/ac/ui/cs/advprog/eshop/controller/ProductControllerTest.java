@@ -59,7 +59,7 @@ class ProductControllerTest {
         String returnedValue = productController.editProductPage("productId", model);
 
         verify(productService).findById("productId");
-        assertEquals("EditProduct", returnedValue);
+        assertEquals("editProduct", returnedValue);
     }
 
     @Test
