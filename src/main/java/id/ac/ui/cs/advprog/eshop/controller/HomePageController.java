@@ -13,9 +13,8 @@ import java.util.List;
 @Controller
 @RequestMapping ("/")
 public class HomePageController {
-
     @GetMapping("/")
     public String homePage() {
-        return "HomePage"; // This corresponds to the name of your HTML file without the extension
+        return "HomePage";
     }
 }
