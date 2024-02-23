@@ -3,6 +3,11 @@
 
 > Akses aplikasi melalui: [ADVShop](https://tutorial-adpro-yhogaa.koyeb.app/)
 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=yhogaa_tutorial-1&metric=coverage)](https://sonarcloud.io/summary/new_code?id=yhogaa_tutorial-1)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yhogaa_tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yhogaa_tutorial-1)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yhogaa_tutorial-1&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yhogaa_tutorial-1)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yhogaa_tutorial-1&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=yhogaa_tutorial-1)
+
 ## Daftar Modul:
 - **[Tutorial 1](#module-1---coding-standards)**<br>
 - **[Tutorial 2](#module-2---cicd--devops)**<br>
