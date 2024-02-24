@@ -23,7 +23,6 @@ class CarRepositoryTest {
     @Test
     void testCreateAndFind() {
         Car car = new Car();
-        car.setCarId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         car.setCarName("Porsche 911");
         car.setCarColor("Silver");
         car.setCarQuantity(100);
