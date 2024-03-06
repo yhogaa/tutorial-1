@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
 
 class PaymentTest {
     private List<Product> products;
@@ -63,13 +64,11 @@ class PaymentTest {
     void testRejectedPaymentEmptyData() {
         Map<String, String> paymentData = new HashMap<>();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
-        });
+        Payment voucherPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", null, paymentData);
+        assertEquals("REJECTED", voucherPayment.getStatus());
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "CASH_ON_DELIVERY", this.orders.getFirst(), paymentData);
-        });
+        Payment codPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "CASH_ON_DELIVERY", null, paymentData);
+        assertEquals("REJECTED", codPayment.getStatus());
     }
 
     // Voucher Code
