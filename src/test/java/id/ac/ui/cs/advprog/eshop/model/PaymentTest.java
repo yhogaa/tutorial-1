@@ -72,6 +72,52 @@ class PaymentTest {
         assertEquals("REJECTED", codPayment.getStatus());
     }
 
+    @Test
+    public void testUpdateStatusWithValidVoucherCode() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), null, paymentData);
+        payment.updateStatus();
+
+        assertEquals("SUCCESS", payment.getStatus());
+    }
+
+    @Test
+    public void testUpdateStatusWithMissingVoucherCode() {
+        Map<String, String> paymentData = new HashMap<>();
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), null, paymentData);;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            payment.updateStatus();
+        });
+
+        assertEquals("Invalid payment data for current method", exception.getMessage());
+    }
+
+    @Test
+    public void testUpdateStatusWithValidCashOnDelivery() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("address", "123 Main St");
+        paymentData.put("deliveryFee", "10");
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.CASH_ON_DELIVERY.getValue(), null, paymentData);
+
+        payment.updateStatus();
+
+        assertEquals("SUCCESS", payment.getStatus());
+    }
+
+    @Test
+    public void testUpdateStatusWithMissingCashOnDeliveryData() {
+        Map<String, String> paymentData = new HashMap<>();
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.CASH_ON_DELIVERY.getValue(), null, paymentData);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            payment.updateStatus();
+        });
+
+        assertEquals("Invalid payment data for current method", exception.getMessage());
+    }
+
     // Voucher Code
     @Test
     void testSuccessValidVoucherCode() {
