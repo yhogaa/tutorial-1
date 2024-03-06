@@ -127,8 +127,12 @@ class PaymentServiceTest {
 
     @Test
     void testFindByIdIfIdNotFound() {
-        doReturn(null).when(paymentRepository).findById("zczc");
-        assertNull(paymentService.getPayment("zczc"));
+        String paymentId = "nonExistentId";
+        when(paymentRepository.findById(paymentId)).thenReturn(null);
+
+        assertThrows(NoSuchElementException.class, () -> {
+            paymentService.getPayment(paymentId);
+        });
     }
 
     @Test

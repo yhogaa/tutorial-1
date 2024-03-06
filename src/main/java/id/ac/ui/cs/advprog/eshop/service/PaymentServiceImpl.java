@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
+import java.util.NoSuchElementException;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -41,9 +41,13 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment getPayment(String paymentId) {
-        return paymentRepository.findById(paymentId);
+        Payment payment = paymentRepository.findById(paymentId);
+        if (payment != null) {
+            return payment;
+        } else {
+            throw new NoSuchElementException("Id not found");
+        }
     }
-
 
     @Override
     public List<Payment> getAllPayments() {
