@@ -12,6 +12,7 @@
 - **[Tutorial 1](#module-1---coding-standards)**<br>
 - **[Tutorial 2](#module-2---cicd--devops)**<br>
 - **[Tutorial 3](#module-3---oo-principles--software-maintainability)**<br>
+- **[Tutorial 4](#module-4-test-driven-development--refactoring)**<br>
 
 ## Module 1 - Coding Standards
 ### Reflection 1
@@ -41,18 +42,23 @@ Tetapi saya menemukan beberapa kekurangan yang ada pada code saya yaitu mengenai
 ## Module 3 - OO Principles & Software Maintainability
 ### Reflection
 1. SOLID Principle
-- **Single Responsibility Principle (SRP)** adalah prinsip yang menekankan bahwa class seharusnya hanya memiliki satu tanggung jawab atau fungsionalitas utama. Pada code yang sudah saya buat, saya telah menerapkan SRP ini yaitu memisahkan `ProductController` dan `CarController`.
-- **Open-Closed Principle (OCP)**, artinya entitas perangkat lunak (kelas, modul, dll.) seharusnya dapat diperluas tanpa mengubah kode yang sudah ada. Saya menerapkan prinsip ini dengan cara mengubah function edit Car agar menggunakan set sehingga ketika mengedit tidak set masing-masing atributnya. Jadi, ketika ada class mengextend Car dengan atribut berbeda (tidak hanya nama, warna, dan jumlah) akan dapat memakai fungsi edit tersebut.
-- **Liskov Substitution Principle (LSP)**, berarti objek dari kelas turunan harus bisa digunakan sebagai pengganti objek kelas induk tanpa mengubah kebenaran program. Saya sudah menerapkan prinsip LSP dengan menghapus `CarController extends ProductController`, agar class CarController bisa memiliki fungsionalitas dan sifat seputar car saja.
-- **Interface Segregation Principle (ISP)**, artinya tidak boleh dipaksa untuk mengimplementasikan interface yang tidak relevan. Kode saya telah menerapkan ISP dengan cara `CarServiceImpl` mengimplementasikan `CarService` dan `ProductServiceImpl` mengimplementasikan `ProductService`. Masing-masing saling mengimplementasikan interface yang relevan.
-- **Dependency Inversions Principle (DIP)**, DIP memiliki arti modul level tinggi tidak boleh bergantung pada modul-level rendah. Keduanya harus bergantung pada abstraksi. Pada before-solid, sempat ada bagian kode saya yang tidak menerapkan prinsip ini. Maka saya memperbaikinya dengan cara mengubah import `CarServiceImpl` menjadi import `CarService` pada `CarController`. Dengan begitu `CarController` menjadi bergantung kepada `CarService` yang lebih menggambarkan abstraksi.
+   - **Single Responsibility Principle (SRP)** adalah prinsip yang menekankan bahwa class seharusnya hanya memiliki satu tanggung jawab atau fungsionalitas utama. Pada code yang sudah saya buat, saya telah menerapkan SRP ini yaitu memisahkan `ProductController` dan `CarController`.
+   - **Open-Closed Principle (OCP)**, artinya entitas perangkat lunak (kelas, modul, dll.) seharusnya dapat diperluas tanpa mengubah kode yang sudah ada. Saya menerapkan prinsip ini dengan cara mengubah function edit Car agar menggunakan set sehingga ketika mengedit tidak set masing-masing atributnya. Jadi, ketika ada class mengextend Car dengan atribut berbeda (tidak hanya nama, warna, dan jumlah) akan dapat memakai fungsi edit tersebut.
+   - **Liskov Substitution Principle (LSP)**, berarti objek dari kelas turunan harus bisa digunakan sebagai pengganti objek kelas induk tanpa mengubah kebenaran program. Saya sudah menerapkan prinsip LSP dengan menghapus `CarController extends ProductController`, agar class CarController bisa memiliki fungsionalitas dan sifat seputar car saja.
+   - **Interface Segregation Principle (ISP)**, artinya tidak boleh dipaksa untuk mengimplementasikan interface yang tidak relevan. Kode saya telah menerapkan ISP dengan cara `CarServiceImpl` mengimplementasikan `CarService` dan `ProductServiceImpl` mengimplementasikan `ProductService`. Masing-masing saling mengimplementasikan interface yang relevan.
+   - **Dependency Inversions Principle (DIP)**, DIP memiliki arti modul level tinggi tidak boleh bergantung pada modul-level rendah. Keduanya harus bergantung pada abstraksi. Pada before-solid, sempat ada bagian kode saya yang tidak menerapkan prinsip ini. Maka saya memperbaikinya dengan cara mengubah import `CarServiceImpl` menjadi import `CarService` pada `CarController`. Dengan begitu `CarController` menjadi bergantung kepada `CarService` yang lebih menggambarkan abstraksi.
 
-2.  Keuntungan menerapkan SOLID Principle adalah:<br>
+2. Keuntungan menerapkan SOLID Principle adalah:<br>
 Dengan menerapkan prinsip-prinsip SOLID, kode akan menjadi lebih teratur, mudah dimodifikasi, dan dapat di-maintain dengan baik. Dengan begitu, developer dapat mengurangi risiko rapuhnya perangkat lunak, mempermudah untuk melakukan perubahan yang dibutuhkan di masa depan, contohnya:
-- Dengan menerapkan SRP, contohnya memisahkan Controller Home, Product dan Car membuat kode lebih mudah dimengerti karena ketika dilihat suatu class controller dapat jelas dimengerti controller tersebut untuk apa.
-- Dengan menerapkan OCP, contohnya dengan membuat fungsi edit Car tidak diset per atribut, membuat kode saya extensible karena ketika ada class mengextend Car dengan atribut berbeda (tidak hanya nama, warna, dan jumlah) akan dapat memakai fungsi edit tersebut.
+   - Dengan menerapkan SRP, contohnya memisahkan Controller Home, Product dan Car membuat kode lebih mudah dimengerti karena ketika dilihat suatu class controller dapat jelas dimengerti controller tersebut untuk apa.
+   - Dengan menerapkan OCP, contohnya dengan membuat fungsi edit Car tidak diset per atribut, membuat kode saya extensible karena ketika ada class mengextend Car dengan atribut berbeda (tidak hanya nama, warna, dan jumlah) akan dapat memakai fungsi edit tersebut.
 
 3. Kerugian tidak menerapkan SOLID Priinciple adalah:<br>
 Apabila kita tidak menggunakan prinsip SOLID pada kode kita, kode akan menjadi lebih sulit untuk di-maintain ke depannya karena rendahnya readability dari kode tersebut. Akibatnya, kode akan menjadi lebih rentan pada perubahan dan akan sulit untuk melakukan testing.
-- Apabila tidak menerapkan SRP, misalnya menggabungkan Controller Home, Product dan Car membuat ambigu yang melihat kode karena sulit dimengerti suatu class controller itu maksudnya untuk apa.
-- Apabila tidak menerapkan OCP, contohnya dengan membuat fungsi edit Car diset per atribut, membuat kode saya tidak extensible karena ketika ada class mengextend Car dengan atribut berbeda (tidak hanya nama, warna, dan jumlah) akan sulit memakai fungsi edit tersebut.
+   - Apabila tidak menerapkan SRP, misalnya menggabungkan Controller Home, Product dan Car membuat ambigu yang melihat kode karena sulit dimengerti suatu class controller itu maksudnya untuk apa.
+   - Apabila tidak menerapkan OCP, contohnya dengan membuat fungsi edit Car diset per atribut, membuat kode saya tidak extensible karena ketika ada class mengextend Car dengan atribut berbeda (tidak hanya nama, warna, dan jumlah) akan sulit memakai fungsi edit tersebut.
+
+## Module 4: Test-Driven Development & Refactoring
+### Reflection
+1. Menurut saya, metode **Test-Driven Development (TDD)** memiliki dampak positif dan negatif. Saya sendiri merasa aneh dan belum terbiasa karena harus membuat test terlebih dahulu tanpa mengetahui apa yang akan di test. Tetapi, TTD sendiri membantu saya untuk mengetahui apakah hal yang saya buat dan lakukan sudah mencapai correctness, maintainability, dan productive workflow.
+2. Saya belum yakin kalau saya sudah mengimplementasi F.I.R.S.T pada test saya, Karena saya belum menerima 100% coverage. Tetapi mungkin sudah ada beberapa. Oleh sebab itu, saya akan menambahkan test untuk dapat mengimplementasikan F.I.R.S.T sepenuhnya.
