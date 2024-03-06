@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,7 +46,7 @@ class PaymentTest {
     void testDuplicatePayment() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), this.orders.getFirst(), paymentData);
 
         assertSame(this.orders.getFirst(), payment.getOrder());
     }
@@ -64,10 +65,10 @@ class PaymentTest {
     void testRejectedPaymentEmptyData() {
         Map<String, String> paymentData = new HashMap<>();
 
-        Payment voucherPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", null, paymentData);
+        Payment voucherPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), null, paymentData);
         assertEquals("REJECTED", voucherPayment.getStatus());
 
-        Payment codPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "CASH_ON_DELIVERY", null, paymentData);
+        Payment codPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.CASH_ON_DELIVERY.getValue(), null, paymentData);
         assertEquals("REJECTED", codPayment.getStatus());
     }
 
@@ -77,7 +78,7 @@ class PaymentTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), this.orders.getFirst(), paymentData);
         assertEquals("SUCCESS", payment.getStatus());
     }
 
@@ -86,7 +87,7 @@ class PaymentTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP");
 
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), this.orders.getFirst(), paymentData);
         assertEquals("REJECTED", payment.getStatus());
     }
 
@@ -95,7 +96,7 @@ class PaymentTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "EHEHE1234ABC5678");
 
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), this.orders.getFirst(), paymentData);
         assertEquals("REJECTED", payment.getStatus());
     }
 
@@ -104,7 +105,7 @@ class PaymentTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC567A");
 
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.VOUCHER_CODE.getValue(), this.orders.getFirst(), paymentData);
         assertEquals("REJECTED", payment.getStatus());
     }
 
@@ -115,7 +116,7 @@ class PaymentTest {
         paymentData.put("address", "Jalan-jalan");
         paymentData.put("deliveryFee", "17500");
 
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "CASH_ON_DELIVERY", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.CASH_ON_DELIVERY.getValue(), this.orders.getFirst(), paymentData);
 
         assertEquals("SUCCESS", payment.getStatus());
     }
@@ -124,7 +125,7 @@ class PaymentTest {
     void testRejectedCashOnDeliveryEmptyAddress() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("deliveryFee", "17500");
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "CASH_ON_DELIVERY", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.CASH_ON_DELIVERY.getValue(), this.orders.getFirst(), paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
     }
@@ -133,7 +134,7 @@ class PaymentTest {
     void testRejectedCashOnDeliveryEmptyDeliveryFee() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("address", "Jalan-jalan");
-        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "CASH_ON_DELIVERY", this.orders.getFirst(), paymentData);
+        Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", PaymentMethod.CASH_ON_DELIVERY.getValue(), this.orders.getFirst(), paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
     }
